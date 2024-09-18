@@ -1,4 +1,4 @@
-This branch
+## Scope
 - created a Contentful account
 - removed the outdated contentlayer package and created our own data fetching middleware `fetch.ts` using Contentful's GraphQL API
 - added Hero content model and its content on Contentful
