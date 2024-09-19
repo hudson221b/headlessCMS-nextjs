@@ -2,7 +2,7 @@
 Funtions to fetch content
 
 */
-
+import "server-only"
 import { HeroQuery, PartnerLogoQuery } from "@/types"
 import { contentGglFetcher } from "./fetch"
 
