@@ -8,11 +8,6 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "overrides": {
-    "next-contentlayer": {
-      "next": "$next"
-    }
-  },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@types/node": "^20.10.4",

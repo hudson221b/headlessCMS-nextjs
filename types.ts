@@ -13,3 +13,14 @@ export type HeroQuery = {
     }[]
   }
 }
+
+export type PartnerLogoQuery = {
+  assetCollection: {
+    items: {
+      title: string
+      url: string
+      width: number
+      height: number
+    }[]
+  }
+}

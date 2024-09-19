@@ -58,6 +58,10 @@
     @apply opacity-100;
 }
 
+.custom-carousel-bg {
+    background: #dde1ed;
+}
+
 /* Pulsing animation */
 @keyframes pulseLoop {
     0% {
