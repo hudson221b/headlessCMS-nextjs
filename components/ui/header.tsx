@@ -19,41 +19,41 @@ export default function Header() {
               <li>
                 <Link
                   className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                  href="/about"
+                  href="/"
                 >
-                  About
+                  These
                 </Link>
               </li>
               <li>
                 <Link
                   className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                  href="/integrations"
+                  href="/"
                 >
-                  Integrations
+                  Links
                 </Link>
               </li>
               <li>
                 <Link
                   className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                  href="/pricing"
+                  href="/"
                 >
-                  Pricing
+                  Not
                 </Link>
               </li>
               <li>
                 <Link
                   className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                  href="/customers"
+                  href="/"
                 >
-                  Customers
+                  Working
                 </Link>
               </li>
               <li>
                 <Link
                   className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                  href="/changelog"
+                  href="/"
                 >
-                  Changelog
+                  Yet
                 </Link>
               </li>
             </ul>
