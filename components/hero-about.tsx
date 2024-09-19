@@ -4,7 +4,7 @@ import Illustration from '@/public/images/page-illustration.svg'
 import AboutIllustration from '@/public/images/about-illustration.svg'
 import Icon from '@/public/images/about-icon.svg'
 
-export default async function HeroAbout() {
+export default function HeroAbout() {
   return (
     <section className="relative">
       {/* Radial gradient */}
