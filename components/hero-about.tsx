@@ -3,10 +3,8 @@ import Particles from './particles'
 import Illustration from '@/public/images/page-illustration.svg'
 import AboutIllustration from '@/public/images/about-illustration.svg'
 import Icon from '@/public/images/about-icon.svg'
-import { getPartnerLogoContent } from "@/content/queries"
 
 export default async function HeroAbout() {
-
   return (
     <section className="relative">
       {/* Radial gradient */}
