@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import PostDate from '@/components/post-date'
-import { UpdateMdx } from '@/components/mdx/update-mdx'
 
 export default function PostItem({ ...props }) {
   return (
@@ -18,7 +17,6 @@ export default function PostItem({ ...props }) {
           <figure className="bg-gradient-to-b from-slate-300/20 to-transparent rounded-3xl p-px mb-8">
             <Image className="w-full rounded-[inherit]" src={props.image} width={574} height={326} alt={props.title} />
           </figure>
-          <UpdateMdx code={props.body.code} />
         </div>
       </div>
     </article>
