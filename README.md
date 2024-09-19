@@ -1,38 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Scope
+- created a Contentful account
+- removed the outdated contentlayer package and created our own data fetching middleware `fetch.ts` using Contentful's GraphQL API
+- added Hero content model and its content on Contentful
+- fetched content and displayed that in Hero server component
 
-## Getting Started
+## Demo
+![Screenshot 2024-09-18 at 6 47 20 PM](https://github.com/user-attachments/assets/583c7dba-5bd4-4f40-8912-d4ec7ffa140a)
 
-First, run the development server:
+## Takeaways
+### 1. contentful does not support next.js app directory on the server side.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### 2. Content model in Contentful
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+When it comes to design data models on a CMS, there's many approaches before we get into this. You can create a schema for a whole page. So we go through that whole page and we'll make fields and sub fields for everything on that page. And there's nothing wrong with that.I've done that before in the past. But for this approach, I'm not going to do it that way. And the reason is because I want to take advantage of server components. What server components with next.js 13+ is that each component can make its own call to get whatever content that it needs specifically. That way you can put those components anywhere and they'll still work exactly the same. Whereas if we render out an entire page, let's say the sections or the subsections on that page will be dependent on its parent passing in the content that it needs.So therefore it's not as flexible anymore, it's not as reusable.
