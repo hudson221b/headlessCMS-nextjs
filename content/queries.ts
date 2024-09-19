@@ -3,7 +3,7 @@ Funtions to fetch content
 
 */
 
-import { HeroQuery } from "@/types"
+import { HeroQuery, PartnerLogoQuery } from "@/types"
 import { contentGglFetcher } from "./fetch"
 
 export const getHeroContent = async () => {
@@ -30,6 +30,36 @@ export const getHeroContent = async () => {
 
   if (!data){
     throw Error("Something went wrong at getting Hero content")
+  }
+
+  return data
+}
+
+export const getPartnerLogoContent = async () => {
+  const query = `
+  query Query($where: AssetFilter) {
+  assetCollection(where: $where) {
+    items {
+      title
+      url
+      width
+      height
+    }
+  }
+}`
+
+  const whereClause = {
+    where: {
+      title_contains: "partner_logo",
+    },
+  }
+  const data = await contentGglFetcher<PartnerLogoQuery>({
+    query,
+    variables: whereClause,
+  })
+
+  if (!data) {
+    throw Error("Something went wrong at getting partner logo content")
   }
 
   return data
