@@ -12,7 +12,7 @@ export default function Cta() {
     {
       imageSrc: "/images/carousel-icon-02.svg",
       header: "Select and connect with an IM Certified partner",
-      text: "Pick certified distribution partners who offers online platforms ans sell the print resources",
+      text: "Pick a certified distribution partner who offers online platforms and sells the print resources",
     },
     {
       imageSrc: "/images/carousel-icon-03.svg",
