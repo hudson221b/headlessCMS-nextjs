@@ -13,10 +13,10 @@ export default function Pricing() {
   return (
     <>
       <PricingSection />
-      <Features />
-      <Customers />
-      <Faqs />
-      <Cta />
+      {/* <Features /> */}
+      {/* <Customers /> */}
+      {/* <Faqs /> */}
+      {/* <Cta /> */}
     </>
   )
 }
