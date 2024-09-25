@@ -29,19 +29,19 @@ export default function GradesAccessPage({
           name: "Grade 6",
           img: CustomerImg02,
           bg: CustomerBg02,
-          link: "/curriculumn/grade-6",
+          link: "/curriculum/grade-6",
         },
         {
           name: "Grade 7",
           img: CustomerImg03,
           bg: CustomerBg03,
-          link: "/curriculumn/grade-7",
+          link: "/curriculum/grade-7",
         },
         {
           name: "Grade 8",
           img: CustomerImg06,
           bg: CustomerBg06,
-          link: "/curriculumn/grade-8",
+          link: "/curriculum/grade-8",
         },
       ]
       break
