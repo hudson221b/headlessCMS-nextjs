@@ -2,7 +2,7 @@
  * Colors for unit cards' background gradient
  */
 
-export const CARDCOLORS = [
+export const CARDCOLORS: [string, string][] = [
   ["#5027fc", "#8533c6"],
   ["#8533c6", "#b03ed9"],
   ["#b03ed9", "#de0075"],

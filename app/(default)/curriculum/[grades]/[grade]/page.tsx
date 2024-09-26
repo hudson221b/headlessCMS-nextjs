@@ -1,17 +1,35 @@
+import { getUnitsForGrade } from "@/content/queries"
 import GradeUnitsCard, { type GradeUnitsCardProps } from "./GradeUnitsCard"
+import { CARDCOLORS } from "@/public/card-colors"
 
-export default function GradePage({ params }: { params: { grade: string } }) {
+/**
+ * Page to display all units for certain grade
+ */
+export default async function GradePage({
+  params,
+}: {
+  params: { grade: string }
+}) {
   const grade = params.grade.split("-")[1]
+  const data = await getUnitsForGrade(grade)
+  console.log("#####🚀🚀🚀 ~ GradePage ~ data👉👉", data)
 
-  const unitItems: GradeUnitsCardProps["unitItem"][] = [
-    {
-      grade: "7",
-      unit: 1,
-      unitTitle: "Scale Drawings",
-      sectionTitles: ["foo", "bar", "foo", "bar"],
-      gradientColors: ["#5127fc", "#8233c9"],
-    },
-  ]
+  const unitItems: GradeUnitsCardProps["unitItem"][] =
+    data.unitLessonsCollection.items.map(item => {
+      const sectionTitles = item.sectionCollection.items.map(
+        section => section.title
+      )
+      const colorIndex = (item.unit - 1) % 9
+
+      return {
+        grade,
+        unit: item.unit,
+        unitTitle: item.unitTitle,
+        sectionTitles,
+        gradientColors: CARDCOLORS[colorIndex],
+      }
+    })
+
   return (
     <section>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-32">

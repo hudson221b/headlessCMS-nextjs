@@ -11,7 +11,7 @@ import CustomerImg03 from "@/public/images/customer-03.svg"
 import CustomerBg03 from "@/public/images/customer-bg-03.png"
 import CustomerImg06 from "@/public/images/customer-06.svg"
 import CustomerBg06 from "@/public/images/customer-bg-06.png"
-import GradeCards from "../GradeCards"
+import GradeCards from "./GradeCards"
 
 export default function GradesAccessPage({
   params,
@@ -29,19 +29,19 @@ export default function GradesAccessPage({
           name: "Grade 6",
           img: CustomerImg02,
           bg: CustomerBg02,
-          link: "/curriculum/grade-6",
+          link: "/curriculum/ms/grade-6",
         },
         {
           name: "Grade 7",
           img: CustomerImg03,
           bg: CustomerBg03,
-          link: "/curriculum/grade-7",
+          link: "/curriculum/ms/grade-7",
         },
         {
           name: "Grade 8",
           img: CustomerImg06,
           bg: CustomerBg06,
-          link: "/curriculum/grade-8",
+          link: "/curriculum/ms/grade-8",
         },
       ]
       break

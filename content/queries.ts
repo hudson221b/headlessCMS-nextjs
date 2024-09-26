@@ -3,7 +3,7 @@ Funtions to fetch content
 
 */
 import "server-only"
-import { HeroQuery, PartnerLogoQuery } from "@/types"
+import { HeroQuery, PartnerLogoQuery, type GradeUnitsQuery } from "@/types"
 import { contentGglFetcher } from "./fetch"
 
 export const getHeroContent = async () => {
@@ -28,7 +28,7 @@ export const getHeroContent = async () => {
 
   const data = await contentGglFetcher<HeroQuery>({ query })
 
-  if (!data){
+  if (!data) {
     throw Error("Something went wrong at getting Hero content")
   }
 
@@ -60,6 +60,42 @@ export const getPartnerLogoContent = async () => {
 
   if (!data) {
     throw Error("Something went wrong at getting partner logo content")
+  }
+
+  return data
+}
+
+/**
+ * Get all units for a grade and all section titles for each unit.
+ * @returns units in ascending order
+ */
+export const getUnitsForGrade = async (grade: string) => {
+  const query = `query UnitLessonsCollection($where: UnitLessonsFilter, $order: [UnitLessonsOrder]) {
+  unitLessonsCollection(where: $where, order: $order) {
+    items {
+      unitTitle
+      unit
+      sectionCollection {
+        items {
+          unit
+          title
+        }
+      }
+    }
+  }
+}`
+
+  const variables = {
+    where: {
+      grade: "7",
+    },
+    order: "unit_ASC",
+  }
+
+  const data = await contentGglFetcher<GradeUnitsQuery>({ query, variables })
+
+  if (!data) {
+    throw Error("Error getting units for a grade")
   }
 
   return data

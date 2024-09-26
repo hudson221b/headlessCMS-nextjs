@@ -24,3 +24,18 @@ export type PartnerLogoQuery = {
     }[]
   }
 }
+
+export type GradeUnitsQuery = {
+  unitLessonsCollection: {
+    items: {
+      unitTitle: string
+      unit: number
+      sectionCollection: {
+        items: {
+          unit: number
+          title: string
+        }[]
+      }
+    }[]
+  }
+}
