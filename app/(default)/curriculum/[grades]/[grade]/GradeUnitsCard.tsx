@@ -8,7 +8,7 @@ export type GradeUnitsCardProps = {
   }
 }
 export default function GradeUnitsCard({ unitItem }: GradeUnitsCardProps) {
-  const { grade, unit, unitTitle, sectionTitles, gradientColors } = unitItem
+  const { unit, unitTitle, sectionTitles, gradientColors } = unitItem
   return (
     <div
       key={unit}
@@ -18,13 +18,14 @@ export default function GradeUnitsCard({ unitItem }: GradeUnitsCardProps) {
       }}
     >
       {/* unit header */}
-      <div className="ml-2 py-3 pl-5 text-white text-xl font-bold">
+      <div className="w-full ml-[8px] py-2 px-5 text-white text-xl font-bold">
         {`Unit ${unit}`}
       </div>
       {/* white bg block */}
       <div
-        className="ml-2 py-3 px-5 bg-white w-100 rounded-br-3xl border-r-[2px] border-b-[2px] text-slate-900"
+        className="w-full h-full border-l-[8px] border-r-[2px] border-b-[2px] py-3 px-5 bg-white rounded-br-3xl text-slate-900"
         style={{
+          borderLeftColor: gradientColors[0],
           borderRightColor: gradientColors[1],
           borderBottomColor: gradientColors[0],
         }}
@@ -40,7 +41,7 @@ export default function GradeUnitsCard({ unitItem }: GradeUnitsCardProps) {
         ></div>
 
         {/* section titles */}
-        <ul className="list-disc list-inside">
+        <ul className="list-disc list-outside px-5">
           {sectionTitles.map((item, index) => (
             <li key={index} className="mb-2">
               {item}
