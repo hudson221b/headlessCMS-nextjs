@@ -5,10 +5,12 @@ export type GradeUnitsCardProps = {
     unitTitle: string
     sectionTitles: string[]
     gradientColors: [string, string]
-  }
+  },
+  href: string
 }
-export default function GradeUnitsCard({ unitItem }: GradeUnitsCardProps) {
+export default function GradeUnitsCard({ unitItem, href }: GradeUnitsCardProps) {
   const { unit, unitTitle, sectionTitles, gradientColors } = unitItem
+  // append unit-1 to current path
   return (
     <div
       key={unit}

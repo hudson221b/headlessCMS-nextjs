@@ -1,3 +1,4 @@
+import { headers } from "next/headers"
 import { getUnitsForGrade } from "@/content/queries"
 import GradeUnitsCard, { type GradeUnitsCardProps } from "./GradeUnitsCard"
 import { CARDCOLORS } from "@/public/card-colors"
@@ -10,10 +11,11 @@ export default async function GradePage({
 }: {
   params: { grade: string }
 }) {
+  const headersList = headers()
+  const currentPathname = headersList.get("x-current-path")
+
   const grade = params.grade.split("-")[1]
   const data = await getUnitsForGrade(grade)
-  console.log("#####🚀🚀🚀 ~ GradePage ~ data👉👉", data)
-
   const unitItems: GradeUnitsCardProps["unitItem"][] =
     data.unitLessonsCollection.items.map(item => {
       const sectionTitles = item.sectionCollection.items.map(
@@ -41,7 +43,10 @@ export default async function GradePage({
               </h1>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {unitItems.map(unit => (
-                  <GradeUnitsCard unitItem={unit} />
+                  <GradeUnitsCard
+                    unitItem={unit}
+                    href={`${currentPathname}/unit-${unit.unit}`}
+                  />
                 ))}
               </div>
             </div>
