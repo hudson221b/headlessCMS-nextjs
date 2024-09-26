@@ -10,5 +10,9 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: "/curriculumn",
+  matcher: [
+    "/curriculum/:grades",
+    "/curriculum/:grades/:grade",
+    "/curriculum/:grades/:grade/:unit",
+  ],
 }

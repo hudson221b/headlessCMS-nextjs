@@ -3,17 +3,20 @@ import { getUnitsForGrade } from "@/content/queries"
 import GradeUnitsCard, { type GradeUnitsCardProps } from "./GradeUnitsCard"
 import { CARDCOLORS } from "@/public/card-colors"
 
+// export const dynamic = 'force-dynamic';
+
 /**
  * Page to display all units for certain grade
  */
 export default async function GradePage({
   params,
 }: {
-  params: { grade: string }
+  params: { grade: string; grades: string }
 }) {
-  const headersList = headers()
-  const currentPathname = headersList.get("x-current-path")
-
+  // headers is an empty object unless force dynamic is enabled
+  // const headersList = headers()
+  // const currentPathname = headersList.get("x-current-path")
+  const grades = params.grades
   const grade = params.grade.split("-")[1]
   const data = await getUnitsForGrade(grade)
   const unitItems: GradeUnitsCardProps["unitItem"][] =
@@ -45,7 +48,7 @@ export default async function GradePage({
                 {unitItems.map(unit => (
                   <GradeUnitsCard
                     unitItem={unit}
-                    href={`${currentPathname}/unit-${unit.unit}`}
+                    href={`curriculum/${grades}/grade-${grade}/unit-${unit.unit}`}
                   />
                 ))}
               </div>

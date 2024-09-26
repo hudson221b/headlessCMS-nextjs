@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export type GradeUnitsCardProps = {
   unitItem: {
     grade: string
@@ -5,12 +7,15 @@ export type GradeUnitsCardProps = {
     unitTitle: string
     sectionTitles: string[]
     gradientColors: [string, string]
-  },
+  }
   href: string
 }
-export default function GradeUnitsCard({ unitItem, href }: GradeUnitsCardProps) {
+export default function GradeUnitsCard({
+  unitItem,
+  href,
+}: GradeUnitsCardProps) {
   const { unit, unitTitle, sectionTitles, gradientColors } = unitItem
-  // append unit-1 to current path
+
   return (
     <div
       key={unit}
@@ -20,9 +25,12 @@ export default function GradeUnitsCard({ unitItem, href }: GradeUnitsCardProps) 
       }}
     >
       {/* unit header */}
-      <div className="w-full ml-[8px] py-2 px-5 text-white text-xl font-bold">
+      <Link
+        className="w-full ml-[8px] py-2 px-5 text-white text-xl font-bold"
+        href={href}
+      >
         {`Unit ${unit}`}
-      </div>
+      </Link>
       {/* white bg block */}
       <div
         className="w-full h-full border-l-[8px] border-r-[2px] border-b-[2px] py-3 px-5 bg-white rounded-br-3xl text-slate-900"
