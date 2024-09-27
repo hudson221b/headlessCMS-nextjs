@@ -3,7 +3,12 @@ Funtions to fetch content
 
 */
 import "server-only"
-import { HeroQuery, PartnerLogoQuery, type GradeUnitsQuery } from "@/types"
+import {
+  HeroQuery,
+  PartnerLogoQuery,
+  type GradeUnitsQuery,
+  type UnitIdsQuery,
+} from "@/types"
 import { contentGglFetcher } from "./fetch"
 
 export const getHeroContent = async () => {
@@ -96,6 +101,82 @@ export const getUnitsForGrade = async (grade: string) => {
 
   if (!data) {
     throw Error("Error getting units for a grade")
+  }
+
+  return data
+}
+
+/**
+ * @returns unit overview ID and its section IDs
+ */
+export const getUnitIds = async (grade: string, unit: number) => {
+  const query = `query UnitLessonsCollection($where: UnitLessonsFilter, $order: [UnitLessonsSectionCollectionOrder]) {
+  unitLessonsCollection(where: $where) {
+    items {
+      _id
+      unitTitle
+      sectionCollection(order: $order) {
+        items {
+          _id
+          grade
+          unit
+          sectionLabel
+        }
+      }
+    }
+  }
+}
+  `
+
+  const variables = {
+    where: {
+      grade: grade,
+      unit: unit
+    },
+    order: "sectionLabel_ASC"
+  }
+
+  const data = await contentGglFetcher<UnitIdsQuery>({ query, variables })
+
+  if (!data) {
+    throw Error("Error getting unit overview")
+  }
+
+  return data
+}
+
+export const getUnitNarrative = async (unitOverviewId: string) => {
+  const query = `query UnitNarrarive($unitLessonsId: String!) {
+  unitLessons(id: $unitLessonsId) {
+    unitNarrarive {
+      json
+      links {
+        assets {
+          block {
+            width
+            url
+            height
+            contentType
+            sys {
+              id
+            }
+          }
+        }
+      }
+      
+    }
+  }
+}
+  `
+
+  const variables = {
+    unitLessonsId: unitOverviewId,
+  }
+
+  const data = await contentGglFetcher({ query, variables })
+
+  if (!data) {
+    throw Error("Error getting unit overview")
   }
 
   return data

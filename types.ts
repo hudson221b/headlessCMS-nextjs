@@ -39,3 +39,23 @@ export type GradeUnitsQuery = {
     }[]
   }
 }
+
+
+export type UnitIdsQuery = {
+  unitLessonsCollection: {
+    items: {
+      _id: string
+      unitTitle: string
+      sectionCollection: {
+        items: {
+          _id: string
+          grade: string
+          unit: number
+          sectionLabel: string
+          sectionGoals: string[]
+          title: string
+        }[]
+      }
+    }[]
+  }
+}

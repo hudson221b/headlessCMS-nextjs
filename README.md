@@ -15,4 +15,5 @@
     - Static Rendering: Server components are statically rendered by default unless they depend on dynamic data like headers or query parameters. If the component doesn't need dynamic rendering, it could be pre-rendered, so headers may not be available in those cases.
     - Not an HTTP Request Context: If you're testing or rendering without an active request (like using server-side components without an actual page request), the headers object might be empty since there's no real HTTP request. 
   - solution: Force Dynamic Rendering:
+- render images in rich-text field
   
