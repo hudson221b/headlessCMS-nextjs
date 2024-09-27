@@ -58,3 +58,24 @@ export type UnitIdsQuery = {
     }[]
   }
 }
+
+export type UnitNarrative = {
+  unitLessons: {
+    unitNarrarive: {
+      json: JSON
+      links: {
+        assets: {
+          block: {
+            width: number
+            height: number
+            url: string
+            contentType: string
+            sys: {
+              id: string
+            }
+          }[]
+        }
+      }
+    }
+  }
+}

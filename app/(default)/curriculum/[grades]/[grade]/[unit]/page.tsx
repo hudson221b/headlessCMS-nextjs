@@ -55,7 +55,7 @@ export default async function UnitPage({
         <div className="pt-32 md:pt-40 border-b [border-image:linear-gradient(to_right,transparent,theme(colors.slate.800),transparent)1]">
           <div className="md:flex md:justify-between">
             <div className="md:grow pb-12 md:pb-20">
-              <div className="max-w-3xl">
+              <div className="max-w-4xl">
                 <article className="pb-12 mb-12 border-b [border-image:linear-gradient(to_right,transparent,theme(colors.slate.800),transparent)1]">
                   <div className="mb-4 text-purple-500 h3">
                     Unit {unitNumber}
