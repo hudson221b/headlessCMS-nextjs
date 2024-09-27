@@ -107,20 +107,21 @@ export const getUnitsForGrade = async (grade: string) => {
 }
 
 /**
- * @returns unit overview ID and its section IDs
+ * @returns entry Id for the unit, and entry IDs for all sections in that unit. Sections are sorted A to Z
  */
 export const getUnitIds = async (grade: string, unit: number) => {
   const query = `query UnitLessonsCollection($where: UnitLessonsFilter, $order: [UnitLessonsSectionCollectionOrder]) {
   unitLessonsCollection(where: $where) {
     items {
-      _id
+      sys {
+        id
+      }
       unitTitle
       sectionCollection(order: $order) {
         items {
-          _id
-          grade
-          unit
-          sectionLabel
+          sys {
+            id
+          }
         }
       }
     }
@@ -145,7 +146,10 @@ export const getUnitIds = async (grade: string, unit: number) => {
   return data
 }
 
-export const getUnitNarrative = async (unitOverviewId: string) => {
+/**
+ * A separate call to fetch unit narrative both json and links fields to obtain all info needed to render rich text content
+ */
+export const getUnitNarrative = async (unitEntryId: string) => {
   const query = `query UnitNarrarive($unitLessonsId: String!) {
   unitLessons(id: $unitLessonsId) {
     unitNarrarive {
@@ -170,7 +174,7 @@ export const getUnitNarrative = async (unitOverviewId: string) => {
   `
 
   const variables = {
-    unitLessonsId: unitOverviewId,
+    unitLessonsId: unitEntryId,
   }
 
   const data = await contentGglFetcher({ query, variables })

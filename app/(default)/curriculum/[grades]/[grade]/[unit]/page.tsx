@@ -16,9 +16,12 @@ export default async function UnitPage({
   const gradeNumber = grade.split("-")[1]
   const unitNumber = unit.split("-")[1]
   const data = await getUnitIds(gradeNumber, parseInt(unitNumber))
-  const unitId = data.unitLessonsCollection.items[0]._id
+  const unitEntryId = data.unitLessonsCollection.items[0].sys.id
   const unitTitle = data.unitLessonsCollection.items[0].unitTitle
-  const sectionInfo = data.unitLessonsCollection.items[0].sectionCollection.items
+  const sectionIds =
+    data.unitLessonsCollection.items[0].sectionCollection.items.map(
+      item => item.sys.id
+    )
 
   return (
     <section className="relative">
@@ -58,13 +61,13 @@ export default async function UnitPage({
                     Unit {unitNumber}
                   </div>
                   <header>
-                  <h2 className="h2 inline-flex pb-4">{unitTitle}</h2>
+                    <h2 className="h2 inline-flex pb-4">{unitTitle}</h2>
                   </header>
                   <h4 className="h4">Unit Narrative</h4>
-                  <UnitNarrative unitId={unitId} />
+                  <UnitNarrative unitId={unitEntryId} />
                 </article>
-                {sectionInfo.map(info => (
-                  <Section sectionInfo={info} />
+                {sectionIds.map(id => (
+                  <Section sectionId={id} />
                 ))}
               </div>
             </div>
