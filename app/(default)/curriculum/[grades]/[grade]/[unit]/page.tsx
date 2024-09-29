@@ -1,12 +1,10 @@
-import Link from "next/link"
 import Image from "next/image"
 import Illustration from "@/public/images/page-illustration.svg"
 import Particles from "@/components/particles"
 import Section from "./Section"
-import { getUnitIds} from "@/content/queries"
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import { BLOCKS } from "@contentful/rich-text-types"
+import { getUnitIds, getUnitNarrative } from "@/content/queries"
 import UnitNarrative from "./UnitNarrative"
+import renderRTF from "@/content/util"
 export default async function UnitPage({
   params,
 }: {
@@ -16,8 +14,14 @@ export default async function UnitPage({
   const gradeNumber = grade.split("-")[1]
   const unitNumber = unit.split("-")[1]
   const data = await getUnitIds(gradeNumber, parseInt(unitNumber))
+  // fetch and parse unit narrative
   const unitEntryId = data.unitLessonsCollection.items[0].sys.id
+  const unitNarrarive = await getUnitNarrative(unitEntryId)
+  const contentJson = unitNarrarive.unitLessons.unitNarrarive.json
+  const links = unitNarrarive.unitLessons.unitNarrarive.links
+  const parsedRTF = renderRTF(contentJson, links)
   const unitTitle = data.unitLessonsCollection.items[0].unitTitle
+
   const sectionIds =
     data.unitLessonsCollection.items[0].sectionCollection.items.map(
       item => item.sys.id
@@ -64,10 +68,10 @@ export default async function UnitPage({
                     <h2 className="h2 inline-flex pb-4">{unitTitle}</h2>
                   </header>
                   <h4 className="h4">Unit Narrative</h4>
-                  <UnitNarrative unitId={unitEntryId} />
+                  <UnitNarrative content={parsedRTF} />
                 </article>
                 {sectionIds.map(id => (
-                  <Section sectionId={id} />
+                  <Section sectionId={id} key={id} />
                 ))}
               </div>
             </div>
