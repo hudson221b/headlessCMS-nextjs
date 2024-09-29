@@ -5,6 +5,7 @@ import Section from "./Section"
 import { getUnitIds, getUnitNarrative } from "@/content/queries"
 import UnitNarrative from "./UnitNarrative"
 import renderRTF from "@/content/util"
+import type { TRtfLinks } from "@/types"
 export default async function UnitPage({
   params,
 }: {
@@ -18,7 +19,8 @@ export default async function UnitPage({
   const unitEntryId = data.unitLessonsCollection.items[0].sys.id
   const unitNarrarive = await getUnitNarrative(unitEntryId)
   const contentJson = unitNarrarive.unitLessons.unitNarrarive.json
-  const links = unitNarrarive.unitLessons.unitNarrarive.links
+  const links: TRtfLinks=
+    unitNarrarive.unitLessons.unitNarrarive.links
   const parsedRTF = renderRTF(contentJson, links)
   const unitTitle = data.unitLessonsCollection.items[0].unitTitle
 

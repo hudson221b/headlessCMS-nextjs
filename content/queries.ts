@@ -8,7 +8,7 @@ import {
   PartnerLogoQuery,
   type GradeUnitsQuery,
   type UnitIdsQuery,
-  type UnitNarrative,
+  type TUnitNarrative,
 } from "@/types"
 import { contentGglFetcher } from "./fetch"
 
@@ -178,7 +178,7 @@ export const getUnitNarrative = async (unitEntryId: string) => {
     unitLessonsId: unitEntryId,
   }
 
-  const data = await contentGglFetcher<UnitNarrative>({ query, variables })
+  const data = await contentGglFetcher<TUnitNarrative>({ query, variables })
 
   if (!data) {
     throw Error("Error getting unit overview")

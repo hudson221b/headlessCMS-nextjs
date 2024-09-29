@@ -59,7 +59,7 @@ export type UnitIdsQuery = {
   }
 }
 
-export type UnitNarrative = {
+export type TUnitNarrative = {
   unitLessons: {
     unitNarrarive: {
       json: JSON
@@ -79,3 +79,5 @@ export type UnitNarrative = {
     }
   }
 }
+
+export type TRtfLinks =  TUnitNarrative["unitLessons"]["unitNarrarive"]["links"]
