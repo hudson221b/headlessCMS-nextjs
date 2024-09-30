@@ -17,20 +17,22 @@ export default function GradeUnitsCard({
   const { unit, unitTitle, sectionTitles, gradientColors } = unitItem
 
   return (
+    <Link
+    href={href}
+    >
     <div
       key={unit}
-      className="w-full max-w-md rounded-3xl overflow-hidden flex flex-col"
+      className="w-full h-full max-w-md rounded-3xl overflow-hidden flex flex-col"
       style={{
         background: `linear-gradient(to right, ${gradientColors[0]}, ${gradientColors[1]})`,
       }}
     >
       {/* unit header */}
-      <Link
+      <div
         className="w-full ml-[8px] py-2 px-5 text-white text-xl font-bold"
-        href={href}
       >
         {`Unit ${unit}`}
-      </Link>
+      </div>
       {/* white bg block */}
       <div
         className="w-full h-full border-l-[8px] border-r-[2px] border-b-[2px] py-3 px-5 bg-white rounded-br-3xl text-slate-900"
@@ -60,5 +62,6 @@ export default function GradeUnitsCard({
         </ul>
       </div>
     </div>
+    </Link>
   )
 }

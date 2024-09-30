@@ -16,7 +16,6 @@ export default async function GradePage({
   // headers is an empty object unless force dynamic is enabled
   const headersList = headers()
   const currentPathname = headersList.get("x-current-path")
-  const grades = params.grades
   const grade = params.grade.split("-")[1]
   const data = await getUnitsForGrade(grade)
   const unitItems: GradeUnitsCardProps["unitItem"][] =

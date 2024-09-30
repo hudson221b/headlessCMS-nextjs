@@ -52,22 +52,6 @@ export default function GradesAccessPage({
       break
   }
 
-  if (!items) {
-    return (
-      <section className="relative">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="pt-32 pb-12 md:pt-40 md:pb-20">
-            {/* Page header */}
-            <div className="text-center pb-12 md:pb-20">
-              <h1 className="h1 bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-4">
-                In Development
-              </h1>
-            </div>
-          </div>
-        </div>
-      </section>
-    )
-  }
 
   return (
     <>
@@ -106,20 +90,22 @@ export default function GradesAccessPage({
             {/* Page header */}
             <div className="text-center pb-12 md:pb-20">
               <h1 className="h1 bg-clip-text text-transparent bg-gradient-to-r from-slate-200/60 via-slate-200 to-slate-200/60 pb-4">
-                Launch IM 6-8 Math
+                {items ? "Launch IM 6-8 Math" : "In Development"}
               </h1>
             </div>
 
             {/* Content */}
-            <div className="max-w-3xl mx-auto">
-              <div className="relative">
-                <div
-                  className="absolute h-full top-4 left-[2px] w-0.5 bg-slate-800 [mask-image:_linear-gradient(0deg,transparent,theme(colors.white)_150px,theme(colors.white))] -z-10 overflow-hidden after:absolute after:h-4 after:top-0 after:-translate-y-full after:left-0 after:w-0.5 after:bg-[linear-gradient(180deg,_transparent,_theme(colors.purple.500/.65)_25%,_theme(colors.purple.200)_50%,_theme(colors.purple.500/.65)_75%,_transparent)] after:animate-shine"
-                  aria-hidden="true"
-                ></div>
-                <GradeCards items={items} />
+            {items && (
+              <div className="max-w-3xl mx-auto">
+                <div className="relative">
+                  <div
+                    className="absolute h-full top-4 left-[2px] w-0.5 bg-slate-800 [mask-image:_linear-gradient(0deg,transparent,theme(colors.white)_150px,theme(colors.white))] -z-10 overflow-hidden after:absolute after:h-4 after:top-0 after:-translate-y-full after:left-0 after:w-0.5 after:bg-[linear-gradient(180deg,_transparent,_theme(colors.purple.500/.65)_25%,_theme(colors.purple.200)_50%,_theme(colors.purple.500/.65)_75%,_transparent)] after:animate-shine"
+                    aria-hidden="true"
+                  ></div>
+                  <GradeCards items={items} />
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </section>

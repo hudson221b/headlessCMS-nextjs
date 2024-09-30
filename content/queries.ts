@@ -94,7 +94,7 @@ export const getUnitsForGrade = async (grade: string) => {
 
   const variables = {
     where: {
-      grade: "7",
+      grade,
     },
     order: "unit_ASC",
   }

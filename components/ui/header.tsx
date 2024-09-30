@@ -19,33 +19,9 @@ export default function Header() {
               <li>
                 <Link
                   className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                  href="/about"
+                  href="/curriculum/k5"
                 >
-                  about
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                  href="/integrations"
-                >
-                  integration
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                  href="/pricing"
-                >
-                  pricing
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                  href="/customers"
-                >
-                  customers
+                  Grade K - 5
                 </Link>
               </li>
               <li>
@@ -56,6 +32,23 @@ export default function Header() {
                   Grade 6 - 8
                 </Link>
               </li>
+              <li>
+                <Link
+                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
+                  href="/curriculum/hs"
+                >
+                  Grade 9 - 12
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
+                  href="/"
+                >
+                  Profesional Training
+                </Link>
+              </li>
+              <li></li>
             </ul>
           </nav>
 
