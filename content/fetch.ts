@@ -8,6 +8,10 @@ type Props = {
   preview?: boolean
 }
 
+/**
+ * Universal fetcher to grab whatever content we need.
+ * @param T the query structure and the shape of data returned
+ */
 export const contentGglFetcher = async <T>({
   query,
   variables = {},

@@ -19,9 +19,25 @@ export default function Header() {
               <li>
                 <Link
                   className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                  href="/"
+                  href="/curriculum/k5"
                 >
-                  These
+                  Grade K - 5
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
+                  href="/curriculum/ms"
+                >
+                  Grade 6 - 8
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
+                  href="/curriculum/hs"
+                >
+                  Grade 9 - 12
                 </Link>
               </li>
               <li>
@@ -29,33 +45,10 @@ export default function Header() {
                   className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
                   href="/"
                 >
-                  Links
+                  Profesional Training
                 </Link>
               </li>
-              <li>
-                <Link
-                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                  href="/"
-                >
-                  Not
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                  href="/"
-                >
-                  Working
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="font-medium text-sm text-slate-300 hover:text-white mx-4 lg:mx-5 transition duration-150 ease-in-out"
-                  href="/"
-                >
-                  Yet
-                </Link>
-              </li>
+              <li></li>
             </ul>
           </nav>
 

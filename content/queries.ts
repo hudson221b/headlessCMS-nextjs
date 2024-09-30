@@ -3,7 +3,14 @@ Funtions to fetch content
 
 */
 import "server-only"
-import { HeroQuery, PartnerLogoQuery } from "@/types"
+import {
+  HeroQuery,
+  PartnerLogoQuery,
+  type GradeUnitsQuery,
+  type UnitIdsQuery,
+  type TUnitNarrative,
+  type SectionQuery,
+} from "@/types"
 import { contentGglFetcher } from "./fetch"
 
 export const getHeroContent = async () => {
@@ -28,7 +35,7 @@ export const getHeroContent = async () => {
 
   const data = await contentGglFetcher<HeroQuery>({ query })
 
-  if (!data){
+  if (!data) {
     throw Error("Something went wrong at getting Hero content")
   }
 
@@ -60,6 +67,177 @@ export const getPartnerLogoContent = async () => {
 
   if (!data) {
     throw Error("Something went wrong at getting partner logo content")
+  }
+
+  return data
+}
+
+/**
+ * Get all units for a grade and all section titles for each unit.
+ * @returns units in ascending order
+ */
+export const getUnitsForGrade = async (grade: string) => {
+  const query = `query UnitLessonsCollection($where: UnitLessonsFilter, $order: [UnitLessonsOrder]) {
+  unitLessonsCollection(where: $where, order: $order) {
+    items {
+      unitTitle
+      unit
+      sectionCollection {
+        items {
+          unit
+          title
+        }
+      }
+    }
+  }
+}`
+
+  const variables = {
+    where: {
+      grade,
+    },
+    order: "unit_ASC",
+  }
+
+  const data = await contentGglFetcher<GradeUnitsQuery>({ query, variables })
+
+  if (!data) {
+    throw Error("Error getting units for a grade")
+  }
+
+  return data
+}
+
+/**
+ * @returns entry Id for the unit, and entry IDs for all sections in that unit. Sections are sorted A to Z
+ */
+export const getUnitIds = async (grade: string, unit: number) => {
+  const query = `query UnitLessonsCollection($where: UnitLessonsFilter, $order: [UnitLessonsSectionCollectionOrder]) {
+  unitLessonsCollection(where: $where) {
+    items {
+      sys {
+        id
+      }
+      unitTitle
+      sectionCollection(order: $order) {
+        items {
+          sys {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+  `
+
+  const variables = {
+    where: {
+      grade: grade,
+      unit: unit,
+    },
+    order: "sectionLabel_ASC",
+  }
+
+  const data = await contentGglFetcher<UnitIdsQuery>({ query, variables })
+
+  if (!data) {
+    throw Error("Error getting unit overview")
+  }
+
+  return data
+}
+
+/**
+ * A separate call to fetch unit narrative both json and links fields to obtain all info needed to render rich text content
+ */
+export const getUnitNarrative = async (unitEntryId: string) => {
+  const query = `query UnitNarrarive($unitLessonsId: String!) {
+  unitLessons(id: $unitLessonsId) {
+    unitNarrarive {
+      json
+      links {
+        assets {
+          block {
+            width
+            url
+            height
+            contentType
+            sys {
+              id
+            }
+          }
+        }
+      }
+      
+    }
+  }
+}
+  `
+
+  const variables = {
+    unitLessonsId: unitEntryId,
+  }
+
+  const data = await contentGglFetcher<TUnitNarrative>({ query, variables })
+
+  if (!data) {
+    throw Error("Error getting unit narrative")
+  }
+
+  return data
+}
+
+/**
+ * @returns all info needed to display section in unit overview page: section label, title, goals, narrative, lessons
+ */
+export const getSectionContent = async (sectionId: string) => {
+  const query = `
+query Query($sectionId: String!) {
+  section(id: $sectionId) {
+    grade
+    unit
+    sectionLabel
+    title
+    sectionGoals
+    sectionNarrative {
+      json
+      links {
+        assets {
+          block {
+            width
+            url
+            height
+            contentType
+            sys {
+              id
+            }
+          }
+        }
+      }
+    }
+    lessonInfoCollection {
+      items {
+        grade
+        unit
+        lesson
+        title
+        subtitle
+        sys {
+          id
+        }
+      }
+    }
+  }
+}
+`
+  const variables = {
+    sectionId: sectionId,
+  }
+  const data = await contentGglFetcher<SectionQuery>({ query, variables })
+
+  if (!data) {
+    throw Error("Error getting section")
   }
 
   return data
