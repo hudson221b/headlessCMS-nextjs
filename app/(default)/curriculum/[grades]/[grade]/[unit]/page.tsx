@@ -3,9 +3,9 @@ import Illustration from "@/public/images/page-illustration.svg"
 import Particles from "@/components/particles"
 import Section from "./Section"
 import { getUnitIds, getUnitNarrative } from "@/content/queries"
-import UnitNarrative from "./UnitNarrative"
+import Narrative from "@/components/Narrative"
 import renderRTF from "@/content/util"
-import type { TRtfLinks } from "@/types"
+import type { RtfLinks } from "@/types"
 export default async function UnitPage({
   params,
 }: {
@@ -19,7 +19,7 @@ export default async function UnitPage({
   const unitEntryId = data.unitLessonsCollection.items[0].sys.id
   const unitNarrarive = await getUnitNarrative(unitEntryId)
   const contentJson = unitNarrarive.unitLessons.unitNarrarive.json
-  const links: TRtfLinks=
+  const links: RtfLinks=
     unitNarrarive.unitLessons.unitNarrarive.links
   const parsedRTF = renderRTF(contentJson, links)
   const unitTitle = data.unitLessonsCollection.items[0].unitTitle
@@ -70,7 +70,7 @@ export default async function UnitPage({
                     <h2 className="h2 inline-flex pb-4">{unitTitle}</h2>
                   </header>
                   <h4 className="h4">Unit Narrative</h4>
-                  <UnitNarrative content={parsedRTF} />
+                  <Narrative content={parsedRTF} />
                 </article>
                 {sectionIds.map(id => (
                   <Section sectionId={id} key={id} />

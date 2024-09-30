@@ -2,7 +2,10 @@
 import { getPreviewContent } from "@/content/util"
 import React, { useState, useEffect, type ReactNode } from "react"
 
-export default function UnitNarrative({
+/**
+ * Self-sufficient component that displays a preview on default and full content upon clicking expand button
+ */
+export default function Narrative({
   content,
   wordLimit = 90,
 }: {
