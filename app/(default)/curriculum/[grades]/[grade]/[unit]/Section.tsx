@@ -1,3 +1,4 @@
+import LessonInfoCard from "@/components/LessonInfoCard"
 import Narrative from "@/components/Narrative"
 import { getSectionContent } from "@/content/queries"
 import renderRTF from "@/content/util"
@@ -19,9 +20,9 @@ export default async function Section({ sectionId }: { sectionId: string }) {
   )
 
   return (
-    <div className="mb-6">
+    <div className="mb-8">
       {/* section header */}
-      <div className="flex items-center max-w-2xl gap-3 mb-2">
+      <div className="flex items-center max-w-2xl gap-3 mb-4">
         <p className="text-lg font-semibold btn-md text-white border-purple-500 border-2 py-1 px-4 rounded-3xl">
           Section {sectionLabel}
         </p>
@@ -29,7 +30,7 @@ export default async function Section({ sectionId }: { sectionId: string }) {
       </div>
       {/* section goals header and list */}
       {sectionGoals && (
-        <div className="mb-2">
+        <div className="mb-4">
           <div className="flex items-center max-w-2xl gap-3">
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
               <g fill="none" fillRule="nonzero">
@@ -53,7 +54,7 @@ export default async function Section({ sectionId }: { sectionId: string }) {
         </div>
       )}
       {/* narrative header and content */}
-      <div className="mb-2">
+      <div className="mb-4">
         <div className="flex items-center max-w-2xl gap-3 mb-2">
           <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26">
             <g fill="none" fillRule="nonzero" opacity=".8">
@@ -73,7 +74,16 @@ export default async function Section({ sectionId }: { sectionId: string }) {
         <Narrative content={narrativeContent} wordLimit={60} />
       </div>
       {/* lessons card */}
-      <div>lessons link</div>
+      {
+        lessonInfoCollection.items.map(item => {
+          const info = {
+            lesson:item.lesson,
+            title: item.title,
+            subtitle: item.subtitle
+          }
+          return  <LessonInfoCard lessonInfo={info} key={item.lesson}/>
+        })
+      }
     </div>
   )
 }
