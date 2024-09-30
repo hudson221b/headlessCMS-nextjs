@@ -3,12 +3,12 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import type { ReactNode } from "react"
 import React from "react"
 import cloneDeep from 'lodash.clonedeep';
-import type { TRtfLinks } from "@/types"
+import type { RtfLinks } from "@/types"
 
 /**
  * Parse rich-text content json and render embedded images
  */
-export default function renderRTF(json: JSON, links: TRtfLinks) {
+export default function renderRTF(json: JSON, links: RtfLinks) {
   const assetBlockMap = new Map()
 
   // loop through the assets and add them to the map
@@ -21,9 +21,13 @@ export default function renderRTF(json: JSON, links: TRtfLinks) {
       [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
         // find the asset in the assetBlockMap by ID
         const asset = assetBlockMap.get(node.data.target.sys.id)
-        // resize image 
+        // resize image
         const ogWidth: number = asset.width
-        let imageStyle = { width: "auto", height: "auto", background:"#cbd5e1" }
+        let imageStyle = {
+          width: "auto",
+          height: "auto",
+          background: "#cbd5e1",
+        }
         if (150 < ogWidth && ogWidth <= 400) {
           imageStyle.width = "150px"
         } else if (ogWidth > 450 && ogWidth <= 800) {
@@ -38,13 +42,12 @@ export default function renderRTF(json: JSON, links: TRtfLinks) {
             width={asset.width}
             height={asset.height}
             style={imageStyle}
-            
           />
         )
       },
     },
   }
-
+  //@ts-ignore
   return documentToReactComponents(json, options)
 }
 

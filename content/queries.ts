@@ -9,6 +9,7 @@ import {
   type GradeUnitsQuery,
   type UnitIdsQuery,
   type TUnitNarrative,
+  type SectionQuery,
 } from "@/types"
 import { contentGglFetcher } from "./fetch"
 
@@ -133,9 +134,9 @@ export const getUnitIds = async (grade: string, unit: number) => {
   const variables = {
     where: {
       grade: grade,
-      unit: unit
+      unit: unit,
     },
-    order: "sectionLabel_ASC"
+    order: "sectionLabel_ASC",
   }
 
   const data = await contentGglFetcher<UnitIdsQuery>({ query, variables })
@@ -181,7 +182,62 @@ export const getUnitNarrative = async (unitEntryId: string) => {
   const data = await contentGglFetcher<TUnitNarrative>({ query, variables })
 
   if (!data) {
-    throw Error("Error getting unit overview")
+    throw Error("Error getting unit narrative")
+  }
+
+  return data
+}
+
+/**
+ * @returns all info needed to display section in unit overview page: section label, title, goals, narrative, lessons
+ */
+export const getSectionContent = async (sectionId: string) => {
+  const query = `
+query Query($sectionId: String!) {
+  section(id: $sectionId) {
+    grade
+    unit
+    sectionLabel
+    title
+    sectionGoals
+    sectionNarrative {
+      json
+      links {
+        assets {
+          block {
+            width
+            url
+            height
+            contentType
+            sys {
+              id
+            }
+          }
+        }
+      }
+    }
+    lessonInfoCollection {
+      items {
+        grade
+        unit
+        lesson
+        title
+        subtitle
+        sys {
+          id
+        }
+      }
+    }
+  }
+}
+`
+  const variables = {
+    sectionId: sectionId,
+  }
+  const data = await contentGglFetcher<SectionQuery>({ query, variables })
+
+  if (!data) {
+    throw Error("Error getting section")
   }
 
   return data

@@ -59,25 +59,51 @@ export type UnitIdsQuery = {
   }
 }
 
+export type RtfLinks = {
+  assets: {
+    block: {
+      width: number
+      height: number
+      url: string
+      contentType: string
+      sys: {
+        id: string
+      }
+    }[]
+  }
+}
+
 export type TUnitNarrative = {
   unitLessons: {
     unitNarrarive: {
       json: JSON
-      links: {
-        assets: {
-          block: {
-            width: number
-            height: number
-            url: string
-            contentType: string
-            sys: {
-              id: string
-            }
-          }[]
-        }
-      }
+      links: RtfLinks
     }
   }
 }
 
-export type TRtfLinks =  TUnitNarrative["unitLessons"]["unitNarrarive"]["links"]
+export type SectionQuery = {
+  section: {
+    grade: string
+    unit: number
+    sectionLabel: string
+    title: string
+    sectionGoals: string[]
+    sectionNarrative: {
+      json: JSON
+      links: RtfLinks
+    }
+    lessonInfoCollection: {
+      items: {
+        grade: string
+        unit: number
+        lesson: number
+        title: string
+        subtitle: string
+        sys: {
+          id: string
+        }
+      }[]
+    }
+  }
+}
