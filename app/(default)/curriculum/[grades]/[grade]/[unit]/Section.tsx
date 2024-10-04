@@ -5,7 +5,6 @@ import renderRTF from "@/content/util"
 
 export default async function Section({ sectionId }: { sectionId: string }) {
   const data = await getSectionContent(sectionId)
-  console.log("#####🚀🚀🚀 ~ Section ~ data👉👉", data)
   const {
     sectionLabel,
     title,

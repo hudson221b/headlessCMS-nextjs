@@ -15,7 +15,7 @@ export default function Logo() {
       />
       <div className="flex flex-col gap-0">
         <p>Illustrative</p>
-        <p>Mathmatics</p>
+        <p>Mathematics</p>
       </div>
     </Link>
   )
