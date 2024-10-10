@@ -35,9 +35,13 @@ Imitated pages:
   - solution: manually setting rendered width based on intrinsic width
 
 ### Tech topic dive: caching
-Use case: let's say the content editor just corrected an error in a lesson, or added an important tip in CMS. We would like to see the change relfected **in production** immediately without rebuilding the app. 
-Initial assessement: We won't immediately see the change even if we reload the page. Because Next.js is going to cache it by default. We need a way to break that cache. 
-Proposal: 
+#### Use case
+Let's say the content editor just corrected an error in a lesson, or added an important tip in CMS. We would like to see the change relfected **in production** immediately without rebuilding the app. 
+
+#### Initial assessement 
+We won't immediately see the change even if we reload the page. Because Next.js is going to cache it by default. We need a way to break that cache. 
+
+#### Proposal
 1. Setting up a revalidation interval for the content we would like to see updated most frequently. This is done on our fetch request because Nextjs hijacks the fetch call and has its own dealing with it.
 ```ts
 fetch("test-url", {
