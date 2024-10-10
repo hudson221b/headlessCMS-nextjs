@@ -32,5 +32,20 @@ Imitated pages:
 - Image sizing
   - article and doc https://refine.dev/blog/using-next-image/
   - maintaining aspect ratio but render images smaller than their original size
+  - solution: manually setting rendered width based on intrinsic width
 
+### Tech topic dive: caching
+Use case: let's say the content editor just corrected an error in a lesson, or added an important tip in CMS. We would like to see the change relfected **in production** immediately without rebuilding the app. 
+Initial assessement: We won't immediately see the change even if we reload the page. Because Next.js is going to cache it by default. We need a way to break that cache. 
+Proposal: 
+1. Setting up a revalidation interval for the content we would like to see updated most frequently. This is done on our fetch request because Nextjs hijacks the fetch call and has its own dealing with it.
+```ts
+fetch("test-url", {
+  method: "POST",
+  body: JSON.stringify({query, variables}),
+  next:{tags, revalidate:30} // tags is an array of content identifier (string) that tells NextJS to rerun the fetch every xx seconds(not miliseconds) set by revalidate
+})
+```
+2. Setting up an API route to handle the revalidation of certain tag. For example: "unit narrative"
+3. Assigning that route to a webhook on Contentful. So when certain content get published on Contentful, this webhook will hit. 
   
