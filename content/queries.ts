@@ -179,7 +179,7 @@ export const getUnitNarrative = async (unitEntryId: string) => {
     unitLessonsId: unitEntryId,
   }
 
-  const data = await contentGglFetcher<TUnitNarrative>({ query, variables })
+  const data = await contentGglFetcher<TUnitNarrative>({ query, variables, tags:["unitNarrative"] })
 
   if (!data) {
     throw Error("Error getting unit narrative")
