@@ -8,12 +8,11 @@ export default function Logo() {
       <Image
         className="max-w-none"
         src={LogoImg}
-        width={38}
-        height={38}
+        width={44}
         priority
-        alt="Stellar"
+        alt="Logo image"
       />
-      <div className="flex flex-col gap-0">
+      <div className="flex flex-col gap-0 text-sm">
         <p>Illustrative</p>
         <p>Mathematics</p>
       </div>
