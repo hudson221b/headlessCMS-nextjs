@@ -6,6 +6,7 @@ type Props = {
   query: string
   variables?: any
   preview?: boolean
+  tags?: string[]
 }
 
 /**
@@ -16,6 +17,7 @@ export const contentGglFetcher = async <T>({
   query,
   variables = {},
   preview = false,
+  tags=[],
 }: Props): Promise<T | undefined> => {
   const res = await fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
@@ -30,6 +32,7 @@ export const contentGglFetcher = async <T>({
       },
       method: "POST",
       body: JSON.stringify({ query, variables }),
+      next: { tags, revalidate: 60 },
     }
   )
 
