@@ -41,7 +41,7 @@ Let's say the content editor just corrected an error in a lesson, or added an im
 #### Initial assessement 
 We won't immediately see the change even if we reload the page. Because Next.js is going to cache it by default. We need a way to break that cache. 
 
-#### Proposal
+#### Solution
 1. Setting up a revalidation interval for the content we would like to see updated most frequently. This is done on our fetch request because Nextjs hijacks the fetch call and has its own dealing with it.
 ```ts
 fetch("test-url", {
@@ -51,5 +51,10 @@ fetch("test-url", {
 })
 ```
 2. Setting up an API route to handle the revalidation of certain tag. For example: "unit narrative"
-3. Assigning that route to a webhook on Contentful. So when certain content get published on Contentful, this webhook will hit. 
+3. Assigning that route to a webhook on Contentful. So when certain content get published on Contentful, this webhook will hit.
+#### Demo
+
+https://github.com/user-attachments/assets/0de9763c-c02c-4b43-bf39-84e8252591c1
+
+
   
