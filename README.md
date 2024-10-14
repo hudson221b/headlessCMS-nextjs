@@ -32,7 +32,7 @@ Imitated pages:
 - Image sizing
   - article and doc https://refine.dev/blog/using-next-image/
   - maintaining aspect ratio but render images smaller than their original size
-  - solution: manually setting rendered width based on intrinsic width
+  - solution: manually setting rendered width and setting height 'auto' to maintain the aspect ratio
 
 ### Tech topic dive: caching
 #### Use case

@@ -24,36 +24,31 @@ export default function GradeCards({ items }: Props) {
         <Highlighter className="grid gap-4 lg:gap-6 sm:grid-cols-3 lg:grid-cols-3 group">
           {items.map((grade, index) => (
             <div key={index}>
-              <Link href={grade.link}>
-                <HighlighterItem02>
-                  <Link
-                    className="relative h-full bg-slate-900 rounded-[inherit] z-20 overflow-hidden"
-                    href={grade.link}
-                  >
-                    {/* Particles animation */}
-                    <Particles
-                      className="absolute inset-0 -z-10"
-                      quantity={3}
+              <HighlighterItem02>
+                <Link
+                  className="relative h-full bg-slate-900 rounded-[inherit] z-20 overflow-hidden"
+                  href={grade.link}
+                >
+                  {/* Particles animation */}
+                  <Particles className="absolute inset-0 -z-10" quantity={3} />
+                  <div className="flex items-center justify-center h-32 lg:h-36">
+                    <Image
+                      className="w-full h-full aspect-video object-cover"
+                      src={grade.bg}
+                      width={352}
+                      height={198}
+                      alt="Customer Background"
+                      aria-hidden="true"
                     />
-                    <div className="flex items-center justify-center h-32 lg:h-36">
-                      <Image
-                        className="w-full h-full aspect-video object-cover"
-                        src={grade.bg}
-                        width={352}
-                        height={198}
-                        alt="Customer Background"
-                        aria-hidden="true"
-                      />
-                      {/* <Image
+                    {/* <Image
                         className="absolute"
                         src={grade.img || CustomerImg02}
                         alt={grade.name}
                       /> */}
-                      <h3 className="absolute h3">{grade.name} </h3>
-                    </div>
-                  </Link>
-                </HighlighterItem02>
-              </Link>
+                    <h3 className="absolute h3">{grade.name} </h3>
+                  </div>
+                </Link>
+              </HighlighterItem02>
             </div>
           ))}
         </Highlighter>
